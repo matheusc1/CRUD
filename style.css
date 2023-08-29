@@ -70,8 +70,12 @@ body {
   margin-left: 3rem;
 }
 
+#active > a:hover {
+  color: var(--zinc-300);
+}
+
 #sb-footer {
-  margin-top: 11.5rem;
+  margin-top: 13rem;
 }
 
 #sb-footer > img {
@@ -88,7 +92,7 @@ body {
   margin: 0;
 }
 
-#email {
+#user-email {
   font-size: 1rem;
   font-family: 'Roboto';
   font-weight: 400;
@@ -136,7 +140,7 @@ body {
 }
 
 #content {
-  height: 82svh;
+  height: 93svh;
   background-color: var(--zinc-950);
 }
 
@@ -188,6 +192,12 @@ body {
   --bs-table-hover-color: #FAFAFA;
 }
 
+th, td {
+  font-family: 'Poppins';
+  font-weight: 300;
+  font-size: 1rem;
+}
+
 td > i {
   color: #a78bfa;
   cursor: pointer;
@@ -195,6 +205,45 @@ td > i {
 
 td > i:hover {
   color: #ddd6fe;
+}
+
+.modal-content {
+  background-color: var(--zinc-800);
+  color: var(--zinc-100);
+  font-family: 'Poppins';
+  font-weight: 500;
+}
+
+.form-control {
+  background-color: var(--zinc-200);
+  border: none;
+  color: var(--zinc-900);
+}
+
+.form-control:focus-within {
+  background-color: var(--zinc-50);
+  box-shadow: none;
+}
+
+.modal-footer > button:first-child {
+  border: 1px solid #db2777;
+  color: var(--zinc-100);
+}
+
+.modal-footer > button:first-child:hover {
+  color: var(--zinc-100);
+  background-color: #f472b6;
+}
+
+.modal-footer > button:last-child {
+  background-color: #7e22ce;
+  border: none;
+  color: var(--zinc-100);
+}
+
+.modal-footer > button:last-child:hover {
+  background-color: var(--violet);
+  border: none;
 }
 
 ::-webkit-scrollbar {
