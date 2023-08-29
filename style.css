@@ -1,0 +1,216 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Roboto:wght@300;400;500;700&display=swap');
+
+* {
+  margin: 0;
+  border: 0;
+  box-sizing: border-box;
+}
+
+:root {
+  --zinc-50: #fafafa;
+  --zinc-100: #f4f4f5;
+  --zinc-200: #e4e4e7;
+  --zinc-300: #d4d4d8;
+  --zinc-400: #a1a1aa;
+  --zinc-500: #71717a;
+  --zinc-600: #52525b;
+  --zinc-700: #3f3f46;
+  --zinc-800: #27272a;
+  --zinc-900: #18181b;
+  --zinc-950: #09090b;
+  --violet: #8b5cf6;
+  --blue: #3b82f6;
+}
+
+body {
+  background-color: var(--zinc-900)!important;
+  width: 100vw;
+  height: 100svh;
+}
+
+#side-bar {
+  height: 100svh;
+  width: 17rem;
+  background-color: var(--zinc-950);
+}
+
+.ph-waves {
+  color: var(--zinc-200);
+}
+
+.header-title {
+  color: var(--zinc-200);
+  font-family: 'Roboto';
+}
+
+.menu-item {
+  margin-left: 3.5rem;
+}
+
+.menu-item > a {
+  text-decoration: none;
+  color: var(--zinc-100);
+  font-family: 'Poppins';
+  font-weight: 500;
+}
+
+.menu-item > a:hover {
+  color: var(--zinc-400);
+}
+
+.menu-item > .ph {
+  font-size: 1.5rem;
+  color: var(--zinc-50);
+}
+
+#active {
+  background-color: var(--violet);
+  border-radius: 10px;
+  padding: 0.5rem 3rem 0.5rem 0.5rem;
+  margin-left: 3rem;
+}
+
+#sb-footer {
+  margin-top: 11.5rem;
+}
+
+#sb-footer > img {
+  width: 56px;
+  height: 56px;
+  border-radius: 28px;
+}
+
+#username {
+  font-size: 1rem;
+  font-family: 'Roboto';
+  font-weight: 600;
+  color: var(--zinc-100);
+  margin: 0;
+}
+
+#email {
+  font-size: 1rem;
+  font-family: 'Roboto';
+  font-weight: 400;
+  color: var(--zinc-300);
+  margin: 0;
+}
+
+.ph-sign-out {
+  font-size: 1.5rem;
+  color: var(--zinc-300);
+  cursor: pointer;
+}
+
+.ph-sign-out:hover {
+  color: var(--zinc-500);
+}
+
+#app-screen {
+  width: 100vw;
+}
+
+.welcome {
+  color: var(--zinc-400);
+  font-size: 1.5rem;
+  font-weight: 700;
+  font-family: 'Roboto';
+}
+
+.theme-control {
+  cursor: pointer;
+}
+
+.theme-control > i, p {
+  font-size: 1rem;
+  color: var(--zinc-100);
+  font-weight: 700;
+  font-family: 'Poppins';
+}
+
+.theme-control > span {
+  font-size: 16;
+  font-family: 'Poppins';
+  font-weight: 500;
+  color: var(--violet);
+}
+
+#content {
+  height: 82svh;
+  background-color: var(--zinc-950);
+}
+
+#table-header {
+  max-height: 64px;
+}
+
+#clients-count > i {
+  color: var(--zinc-700);
+  font-size: 40px;
+  background-color: var(--zinc-300);
+}
+
+#clients-count-text > p {
+  color: var(--zinc-500);
+  font-family: 'Roboto';
+  font-size: 1rem;
+  font-weight: 400;
+}
+
+#clients-count-text > span {
+  color: var(--zinc-200);
+  font-size: 1.5rem;
+  font-family: 'Roboto';
+  font-weight: 600;
+}
+
+#add-client > button, i {
+  color: var(--zinc-700);
+  font-size: 24px;
+}
+
+#add-client > button {
+  background-color: var(--zinc-300);
+  font-size: 1rem;
+  font-family: 'Roboto';
+  font-weight: 400;
+  color: var(--zinc-700);
+}
+
+#add-client > button:hover {
+  background-color: var(--zinc-400);
+}
+
+.table {
+  --bs-table-bg: #09090b;
+  --bs-table-color: #FAFAFA;
+  --bs-table-hover-bg: #27272a;
+  --bs-table-hover-color: #FAFAFA;
+}
+
+td > i {
+  color: #a78bfa;
+  cursor: pointer;
+}
+
+td > i:hover {
+  color: #ddd6fe;
+}
+
+::-webkit-scrollbar {
+  width: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: #f1f1f1;
+  border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #888;
+  border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #555;
+}
