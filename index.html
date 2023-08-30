@@ -32,17 +32,17 @@
 
       <div id="active" class="menu-item d-flex flex-row mb-4 gap-4">
         <i class="ph ph-user-circle menu-icon"></i>
-        <a href="#">Clients</a>
+        <a href="#">Clientes</a>
       </div>
 
       <div class="menu-item d-flex flex-row mb-4 gap-4">
         <i class="ph ph-archive menu-icon"></i>
-        <a href="#">Products</a>
+        <a href="#">Produtos</a>
       </div>
 
       <div class="menu-item d-flex flex-row mb-4 gap-4">
         <i class="ph ph-user-list menu-icon"></i>
-        <a href="#">Users</a>
+        <a href="#">Usuários</a>
       </div>
     </div>
 
@@ -87,7 +87,7 @@
           <div id="clients-count-text"
             class="d-flex flex-column gap-1 align-items-center justify-content-center"
           >
-            <p class="m-0">Total clients</p>
+            <p class="m-0">Total de clientes</p>
             <span>6</span>
           </div>
 
@@ -95,11 +95,10 @@
 
         <div id="add-client" class="me-5 mt-1 pe-2">
           <button type="button"
+            id="add-btn"
             class="btn btn-secondary d-flex align-items-center justify-content-center gap-2"
-            data-bs-toggle="modal" 
-            data-bs-target="#exampleModal"
           >
-            Add new client
+            Adicionar cliente
             <i class="ph ph-user-circle-plus"></i>
           </button>
         </div>
@@ -110,29 +109,17 @@
           
           <thead>
             <tr>
-              <th scope="col">#</th>
-              <th scope="col">Name</th>
-              <th scope="col">Phone Number</th>
+              <th scope="col">ID</th>
+              <th scope="col">Nome</th>
+              <th scope="col">Telefone</th>
               <th scope="col">Email</th>
               <th scope="col">CPF</th>
-              <th scope="col">Register</th>
+              <th scope="col">Data de registro</th>
               <th scope="col"></th>
             </tr>
           </thead>
 
           <tbody>
-            <tr>
-              <td>1</td>
-              <td>Fulano de Almeida Andrade</td>
-              <td>(24) 99999-9999</td>
-              <td>fulano@gmail.com</td>
-              <td>84679970014</td>
-              <td>27/08/2023 20:18</td>
-              <td>
-                <i class="ph ph-pencil-simple"></i>
-                <i class="ph ph-trash"></i>
-              </td>
-            </tr>
 
           </tbody>
 
@@ -141,19 +128,19 @@
     </div>
   </div>
 
-  <div class="modal fade"
-    id="exampleModal"
-    tabindex="-1" 
-    aria-labelledby="exampleModalLabel" 
-    aria-hidden="true"
+  <div class="modal fade" id="client-modal" tabindex="-1"
   >
     <div class="modal-dialog">
 
       <div class="modal-content">
 
         <div class="modal-header">
-          <h1 class="modal-title fs-5" id="exampleModalLabel">Adicionar cliente</h1>
-          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          <h4 class="modal-title fs-5" id="modal-title">Adicionar cliente</h4>
+          <button type="button" 
+            class="btn-close" 
+            data-bs-dismiss="modal" 
+            aria-label="Close"
+          ></button>
         </div>
 
         <div class="modal-body">
@@ -165,12 +152,12 @@
               <input type="email" class="form-control" id="id" readonly>
             </div>
             <div class="col-md-10">
-              <label for="name" class="form-label">Name</label>
+              <label for="name" class="form-label">Nome</label>
               <input type="email" class="form-control" id="name">
             </div>
 
             <div class="col-md-6">
-              <label for="phone-number" class="form-label">Phone number</label>
+              <label for="phone-number" class="form-label">Telefone</label>
               <input type="text" class="form-control" id="phone-number">
             </div>
             <div class="col-6">
@@ -189,15 +176,15 @@
         </div>
 
         <div class="modal-footer">
-          <button type="button" class="btn" data-bs-dismiss="modal">Fechar</button>
-          <button type="button" class="btn">Adicionar</button>
+          <button type="button" id="cancel-btn" class="btn" data-bs-dismiss="modal">Fechar</button>
+          <button type="button" id="save-btn" class="btn">Salvar</button>
         </div>
 
       </div>
     </div>
   </div>
 
-  <script src="./script.js"></script>
+  <script src="script.js"></script>
 
 </body>
 </html>
