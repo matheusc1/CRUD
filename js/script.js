@@ -1,26 +1,59 @@
 const URL = 'http://localhost:3400/clientes'
 
 const clientList = []
+let editMode = false
+
 const addBtn = document.getElementById('add-btn')
 const clientTable = document.querySelector('table>tbody')
+
 const editBtn = document.getElementById('edit-btn')
 const deleteBtn = document.getElementById('delete-btn')
+
 const clientModal = new bootstrap.Modal(document.getElementById('client-modal'))
 const modalTitle = document.getElementById('modal-title')
-const saveBtn = document.getElementById('save-btn')
+const displayId = document.getElementById('id')
 const cancelBtn = document.getElementById('cancel-btn')
+const saveBtn = document.getElementById('save-btn')
 
-let editMode = false
+const deleteModal = new bootstrap.Modal(document.getElementById('delete-modal'))
+const cancelDeleteBtn = document.getElementById('cancel-delete')
+const confirmDeleteBtn = document.getElementById('confirm-delete')
+let deleteClientId = null;
 
 getClients()
 
-addBtn.addEventListener('click', () => clientModal.show())
+document.addEventListener('DOMContentLoaded', () => {
+  addBtn.addEventListener('click', () => {
+  
+    editMode = false;
+    modalTitle.textContent = 'Adicionar cliente';
+    displayId.value = clientList.length + 1;
+  
+    clientModal.show()
+  })
+})
+
+cancelBtn.addEventListener('click', () => {
+  clientModal.hide()
+  const inputs = document.querySelectorAll('.form-control')
+
+  inputs.forEach(input => {
+    input.value = ""
+  })
+})
+
+saveBtn.addEventListener('click', () => {
+  clientModal.hide()
+})
 
 async function getClients() {
   try {
     const response = await fetch(URL)
 
-    const clientList = await response.json()  
+    clientList.length = 0;
+    const data = await response.json()
+    clientList.push(...data)
+
     populateTable(clientList)
 
   } catch (error) {
@@ -46,8 +79,12 @@ function addTableRow(client) {
   tdCpf.textContent = client.cpfOuCnpj;
   tdData.textContent = formatedData(client.dataCadastro);
   tdActions.innerHTML = `
-    <i id="edit-btn" class="ph ph-pencil-simple"></i>
-    <i id="delete-btn" class="ph ph-trash"></i>`
+    <button id="edit-btn" onclick="editClient(${client.id})">
+      <i class="ph ph-pencil-simple"></i>
+    </button>
+    <button id="delete-btn" onclick="getDeleteId(${client.id})">
+      <i id="delete-btn" class="ph ph-trash"></i>
+    </button>`
 
   tr.appendChild(tdId);
   tr.appendChild(tdName);
@@ -87,5 +124,31 @@ function populateTable(clients) {
   });
 }
 
-function editClient(id) {}
-function deleteClient(id) {}
+function editClient(id) {
+  editMode = true;
+  modalTitle.textContent = "Editar cliente"
+  displayId.value = id;
+  clientModal.show()
+}
+
+function deleteClient(id) {
+  console.log(id)
+}
+
+function getDeleteId(id) { 
+  deleteClientId = id;
+  deleteModal.show()
+}
+
+confirmDeleteBtn.addEventListener('click', () => {
+  if (deleteClientId !== null) {
+    deleteClient(deleteClientId)
+  }
+
+  deleteModal.hide()
+})
+
+cancelDeleteBtn.addEventListener('click', () => {
+  deleteClientId = null;
+  deleteModal.hide()
+})

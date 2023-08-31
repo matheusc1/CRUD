@@ -149,7 +149,7 @@
 
             <div class="col-md-2">
               <label for="id" class="form-label">ID</label>
-              <input type="email" class="form-control" id="id" readonly>
+              <input type="text" class="form-control" id="id" readonly>
             </div>
             <div class="col-md-10">
               <label for="name" class="form-label">Nome</label>
@@ -176,7 +176,7 @@
         </div>
 
         <div class="modal-footer">
-          <button type="button" id="cancel-btn" class="btn" data-bs-dismiss="modal">Fechar</button>
+          <button type="button" id="cancel-btn" class="btn">Fechar</button>
           <button type="button" id="save-btn" class="btn">Salvar</button>
         </div>
 
@@ -184,7 +184,29 @@
     </div>
   </div>
 
-  <script src="script.js"></script>
+  <div class="modal fade" id="delete-modal" tabindex="-1">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title">Excluir cliente</h5>
+          <button type="button"
+            class="btn-close" 
+            data-bs-dismiss="modal" 
+            aria-label="Close"
+          ></button>
+        </div>
+        <div class="modal-body">
+          <p>Deseja excluir este cliente? Esta ação é irreversível!</p>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn" id="cancel-delete">Cancelar</button>
+          <button type="button" class="btn" id="confirm-delete">Excluir</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="./js/script.js"></script>
 
 </body>
 </html>

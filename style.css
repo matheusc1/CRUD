@@ -198,12 +198,12 @@ th, td {
   font-size: 1rem;
 }
 
-td > i {
+td > button > i {
   color: #a78bfa;
   cursor: pointer;
 }
 
-td > i:hover {
+td > button > i:hover {
   color: #ddd6fe;
 }
 
@@ -244,6 +244,12 @@ td > i:hover {
 .modal-footer > button:last-child:hover {
   background-color: var(--violet);
   border: none;
+}
+
+#edit-btn, #delete-btn {
+  border: none;
+  background-color: transparent;
+  z-index: -1;
 }
 
 ::-webkit-scrollbar {
