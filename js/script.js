@@ -3,6 +3,7 @@ const URL = 'http://localhost:3400/clientes'
 const clientList = []
 let editMode = false
 
+let clientNumber = document.getElementById('client-number')
 const addBtn = document.getElementById('add-btn')
 const clientTable = document.querySelector('table>tbody')
 
@@ -19,6 +20,13 @@ const deleteModal = new bootstrap.Modal(document.getElementById('delete-modal'))
 const cancelDeleteBtn = document.getElementById('cancel-delete')
 const confirmDeleteBtn = document.getElementById('confirm-delete')
 let deleteClientId = null;
+
+const formModal = {
+  name: document.getElementById('name'),
+  phoneNumber: document.getElementById('phone-number'),
+  cpf: document.getElementById('cpf'),
+  email: document.getElementById('email'),
+}
 
 getClients()
 
@@ -43,7 +51,8 @@ cancelBtn.addEventListener('click', () => {
 })
 
 saveBtn.addEventListener('click', () => {
-  clientModal.hide()
+  let client = getModalData()
+  addClient(client)
 })
 
 async function getClients() {
@@ -53,9 +62,9 @@ async function getClients() {
     clientList.length = 0;
     const data = await response.json()
     clientList.push(...data)
+    clientNumber.textContent = clientList.length
 
     populateTable(clientList)
-
   } catch (error) {
     console.error(error)
   }
@@ -122,6 +131,41 @@ function populateTable(clients) {
   clients.forEach(client => {
     addTableRow(client)
   });
+}
+
+function getModalData() {
+  return new Client({
+    nome: formModal.name.value,
+    telefone: formModal.phoneNumber.value,
+    cpfOuCnpj: formModal.cpf.value,
+    email: formModal.email.value,
+  })
+}
+
+async function addClient(client) {
+  client.dataCadastro = new Date().toISOString()
+
+  try {
+    const response = await fetch(URL, {
+      method: "POST",
+      headers: {
+        'Content-Type': 'application/json',
+        'Autorization': 'token',
+      },
+      body: JSON.stringify(client)
+    })
+
+    const data = await response.json()
+    const newClient = new Client(data)
+
+    clientList.push(newClient)
+    populateTable(clientList)
+    clientModal.hide()
+    clientNumber.textContent = clientList.length
+
+  } catch (error) {
+    console.error(error)
+  }
 }
 
 function editClient(id) {
