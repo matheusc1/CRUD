@@ -22,6 +22,7 @@ const confirmDeleteBtn = document.getElementById('confirm-delete')
 let deleteClientId = null;
 
 const formModal = {
+  id: document.getElementById('id'),
   name: document.getElementById('name'),
   phoneNumber: document.getElementById('phone-number'),
   cpf: document.getElementById('cpf'),
@@ -30,29 +31,29 @@ const formModal = {
 
 getClients()
 
-document.addEventListener('DOMContentLoaded', () => {
-  addBtn.addEventListener('click', () => {
-  
-    editMode = false;
-    modalTitle.textContent = 'Adicionar cliente';
-    displayId.value = clientList.length + 1;
-  
-    clientModal.show()
-  })
+addBtn.addEventListener('click', () => {
+  clearModal()
+
+  editMode = false;
+  modalTitle.textContent = 'Adicionar cliente';
+  displayId.value = clientList.length + 1;
+
+  clientModal.show()
 })
 
 cancelBtn.addEventListener('click', () => {
   clientModal.hide()
-  const inputs = document.querySelectorAll('.form-control')
-
-  inputs.forEach(input => {
-    input.value = ""
-  })
+  clearModal()
 })
 
 saveBtn.addEventListener('click', () => {
   let client = getModalData()
-  addClient(client)
+
+  if (editMode) {
+    updateClientInfo(client)
+  } else {
+    addClient(client)
+  }
 })
 
 async function getClients() {
@@ -62,7 +63,6 @@ async function getClients() {
     clientList.length = 0;
     const data = await response.json()
     clientList.push(...data)
-    clientNumber.textContent = clientList.length
 
     populateTable(clientList)
   } catch (error) {
@@ -115,14 +115,12 @@ function formatedPhoneNumber(phoneNumber) {
 }
 
 function formatedData(data) {
-  let year = data.slice(0, 4)
-  let month = data.slice(5, 7)
-  let day = data.slice(8, 10)
+  const date = new Date(data)
 
-  let hour = data.slice(11, 13)
-  let minute = data.slice(14, 16)
+  const dateYMD = date.toLocaleDateString().slice(0, 11)
+  const dateHM = date.toLocaleTimeString().slice(0, 5)
 
-  return `${day}/${month}/${year} - ${hour}:${minute}`
+  return `${dateYMD} - ${dateHM}`
 }
 
 function populateTable(clients) {
@@ -131,14 +129,18 @@ function populateTable(clients) {
   clients.forEach(client => {
     addTableRow(client)
   });
+
+  clientNumber.textContent = clientList.length
 }
 
 function getModalData() {
   return new Client({
+    id: formModal.id.value,
     nome: formModal.name.value,
     telefone: formModal.phoneNumber.value,
     cpfOuCnpj: formModal.cpf.value,
     email: formModal.email.value,
+    dataCadastro: new Date().toISOString()
   })
 }
 
@@ -150,7 +152,7 @@ async function addClient(client) {
       method: "POST",
       headers: {
         'Content-Type': 'application/json',
-        'Autorization': 'token',
+        'Authorization': 'token',
       },
       body: JSON.stringify(client)
     })
@@ -161,8 +163,6 @@ async function addClient(client) {
     clientList.push(newClient)
     populateTable(clientList)
     clientModal.hide()
-    clientNumber.textContent = clientList.length
-
   } catch (error) {
     console.error(error)
   }
@@ -172,11 +172,73 @@ function editClient(id) {
   editMode = true;
   modalTitle.textContent = "Editar cliente"
   displayId.value = id;
+
+  let client = clientList.find(client => client.id == id)
+  updateClientModal(client, false)
   clientModal.show()
 }
 
+function updateClientInfo(client) {
+  try {
+    fetch(`${URL}/${client.id}`, {
+      method: "PUT",
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': 'token'
+      },
+      body: JSON.stringify(client)
+    })
+    
+    updateClient(client)
+    clientModal.hide()
+
+  } catch (error) {
+    console.log(error)
+  }
+}
+
+function updateClient(client, remove) {
+  let index = clientList.findIndex((c) => c.id == client.id)
+
+  if(remove) {
+    clientList.splice(index, 1)
+  } else {
+    clientList.splice(index, 1, client)
+  }
+  
+  populateTable(clientList)
+}
+
+function updateClientModal(client) {
+  formModal.id.value = client.id
+  formModal.name.value = client.nome
+  formModal.phoneNumber.value = client.telefone
+  formModal.cpf.value = client.cpfOuCnpj
+  formModal.email.value = client.email
+}
+
+function clearModal() {
+  const inputs = document.querySelectorAll('.form-control')
+
+  inputs.forEach(input => {
+    input.value = ""
+  })
+}
+
 function deleteClient(id) {
-  console.log(id)
+  let client = clientList.find(client => client.id == id)
+  try {
+    fetch(`${URL}/${id}`), {
+      method: 'DELETE',
+      headers: {
+        'Content-type': 'application/json',
+        'Authorization': 'token'
+      },
+    }
+    updateClient(client, true)
+  } catch (error) {
+    console.error(error)
+  }
 }
 
 function getDeleteId(id) { 
@@ -185,7 +247,7 @@ function getDeleteId(id) {
 }
 
 confirmDeleteBtn.addEventListener('click', () => {
-  if (deleteClientId !== null) {
+  if (deleteClientId) {
     deleteClient(deleteClientId)
   }
 
