@@ -110,11 +110,15 @@ body {
   color: var(--zinc-500);
 }
 
+#logout {
+  all: unset;
+}
+
 #app-screen {
   width: 100vw;
 }
 
-.welcome {
+#welcome {
   color: var(--zinc-400);
   font-size: 1.5rem;
   font-weight: 700;

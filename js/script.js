@@ -3,6 +3,12 @@ const URL = 'http://localhost:3400/clientes'
 const clientList = []
 let editMode = false
 
+const username = document.getElementById('username')
+const userEmail = document.getElementById('user-email')
+const logoutBtn = document.getElementById('logout')
+const avatar = document.getElementById('avatar')
+const welcomeMsg = document.getElementById('welcome')
+
 let clientNumber = document.getElementById('client-number')
 const addBtn = document.getElementById('add-btn')
 const clientTable = document.querySelector('table>tbody')
@@ -30,6 +36,17 @@ const formModal = {
 }
 
 getClients()
+const user = JSON.parse(getUser());
+
+if (user) {
+  const { nome, email, foto } = user
+  username.textContent = nome ?? "Não informado"
+  userEmail.textContent = email ?? "Não informado"
+  avatar.setAttribute('src', foto) ?? "Não informado"
+  welcomeMsg.textContent = `Olá ${nome}, 👋🏼` ?? `Olá usuário, 👋🏼`
+}
+
+logoutBtn.addEventListener('click', logout)
 
 addBtn.addEventListener('click', () => {
   clearModal()
@@ -58,7 +75,12 @@ saveBtn.addEventListener('click', () => {
 
 async function getClients() {
   try {
-    const response = await fetch(URL)
+    const response = await fetch(URL, {
+      method: 'GET',
+      headers: {
+        'Authorization': getToken()
+      }
+    })
 
     clientList.length = 0;
     const data = await response.json()
@@ -152,7 +174,7 @@ async function addClient(client) {
       method: "POST",
       headers: {
         'Content-Type': 'application/json',
-        'Authorization': 'token',
+        'Authorization': getToken(),
       },
       body: JSON.stringify(client)
     })
@@ -184,7 +206,7 @@ function updateClientInfo(client) {
       method: "PUT",
       headers: {
         'Content-Type': 'application/json',
-        'Authorization': 'token'
+        'Authorization': getToken(),
       },
       body: JSON.stringify(client)
     })
@@ -232,7 +254,7 @@ function deleteClient(id) {
       method: 'DELETE',
       headers: {
         'Content-type': 'application/json',
-        'Authorization': 'token'
+        'Authorization': getToken(),
       },
     }
     updateClient(client, true)

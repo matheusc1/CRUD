@@ -14,8 +14,9 @@
     crossorigin="anonymous"
   ></script>
   <script src="https://unpkg.com/@phosphor-icons/web"></script>
-  <link rel="stylesheet" href="./style.css">
-
+  <link rel="stylesheet" href="/styles/app.css">
+  <link rel="icon" type="image/png" sizes="32x32" href="/assets/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/assets//favicon-16x16.png">
 </head>
 
 <body class="d-flex overflow-hidden">
@@ -49,7 +50,7 @@
     <div id="sb-footer" 
       class="d-flex flex-row justify-content-center align-items-center gap-3"
     >
-      <img src="./assets/avatar.png" alt="avatar icon">
+      <img id="avatar" src="./assets/avatar.png" alt="avatar icon">
 
       <div 
         class="user-info d-flex flex-column align-items-start justify-content-center gap-2"
@@ -58,7 +59,9 @@
         <p id="user-email">admin@admin</p>
       </div>
 
-      <i class="ph ph-sign-out"></i>
+      <button id="logout">
+        <i class="ph ph-sign-out"></i>
+      </button>
     </div>
   </nav>
 
@@ -69,7 +72,7 @@
       <div 
         class="app-header d-flex flex-row align-items-center justify-content-between mx-5 my-4"
       >
-        <p class="welcome">Hello Username, 👋🏼</p>
+        <p id="welcome"></p>
 
         <div class="theme-control d-flex flex-row gap-1">
           <i class="ph ph-moon mt-1"></i>
@@ -206,8 +209,8 @@
     </div>
   </div>
 
-  <script src="./js/model/Client.js"></script>
-  <script src="./js/script.js"></script>
-
+  <script src="/js/base.js"></script>
+  <script src="/js/model/Client.js"></script>
+  <script src="/js/script.js"></script>
 </body>
 </html>
