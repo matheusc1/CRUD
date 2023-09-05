@@ -40,10 +40,10 @@ const user = JSON.parse(getUser());
 
 if (user) {
   const { nome, email, foto } = user
-  username.textContent = nome ?? "Não informado"
-  userEmail.textContent = email ?? "Não informado"
-  avatar.setAttribute('src', foto) ?? "Não informado"
-  welcomeMsg.textContent = `Olá ${nome}, 👋🏼` ?? `Olá usuário, 👋🏼`
+  username.textContent = nome
+  userEmail.textContent = email
+  avatar.setAttribute('src', foto)
+  welcomeMsg.textContent = `Olá ${nome}, 👋🏼`
 }
 
 logoutBtn.addEventListener('click', logout)
