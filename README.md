@@ -17,7 +17,7 @@ npm install
 npm start
 ```
 
-Feito isso basta abrir em a página em um navegador.
+Feito isso basta abrir a página em um navegador.
 
 ## Layout 🎨
 
