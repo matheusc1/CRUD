@@ -3,6 +3,10 @@ const URL = 'http://localhost:3400/clientes'
 const clientList = []
 let editMode = false
 
+const body = document.querySelector('body')
+const toggleBtn = document.getElementById('toggle-theme')
+const themeStatus = document.getElementById('theme-status')
+
 const username = document.getElementById('username')
 const userEmail = document.getElementById('user-email')
 const logoutBtn = document.getElementById('logout')
@@ -45,6 +49,16 @@ if (user) {
   avatar.setAttribute('src', foto)
   welcomeMsg.textContent = `Olá ${nome}, 👋🏼`
 }
+
+toggleBtn.addEventListener('click', () => {
+  body.classList.toggle('dark')
+
+  if (body.classList.contains('dark')) {
+    themeStatus.textContent = 'on'
+  } else {
+    themeStatus.textContent = 'off'
+  }
+})
 
 logoutBtn.addEventListener('click', logout)
 

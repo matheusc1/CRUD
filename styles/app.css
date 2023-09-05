@@ -6,7 +6,7 @@
   box-sizing: border-box;
 }
 
-:root {
+body.dark {
   --zinc-50: #fafafa;
   --zinc-100: #f4f4f5;
   --zinc-200: #e4e4e7;
@@ -19,11 +19,13 @@
   --zinc-900: #18181b;
   --zinc-950: #09090b;
   --violet: #8b5cf6;
-  --blue: #3b82f6;
+  --violet-400: #a78bfa;
+  --violet-200: #ddd6fe;
+  --purple-700: #7e22ce;
 }
 
 body {
-  background-color: var(--zinc-900)!important;
+  background-color: var(--zinc-900, #e4e4e7)!important;
   width: 100vw;
   height: 100svh;
 }
@@ -31,15 +33,15 @@ body {
 #side-bar {
   height: 100svh;
   width: 17rem;
-  background-color: var(--zinc-950);
+  background-color: var(--zinc-950, #F4F4F5);
 }
 
 .ph-waves {
-  color: var(--zinc-200);
+  color: var(--zinc-200, #27272A);
 }
 
 .header-title {
-  color: var(--zinc-200);
+  color: var(--zinc-200, #27272A);
   font-family: 'Roboto';
 }
 
@@ -49,29 +51,29 @@ body {
 
 .menu-item > a {
   text-decoration: none;
-  color: var(--zinc-100);
+  color: var(--zinc-100, #18181b);
   font-family: 'Poppins';
   font-weight: 500;
 }
 
 .menu-item > a:hover {
-  color: var(--zinc-400);
+  color: var(--zinc-400, #71717a);
 }
 
 .menu-item > .ph {
   font-size: 1.5rem;
-  color: var(--zinc-50);
+  color: var(--zinc-50, #09090B);
 }
 
 #active {
-  background-color: var(--violet);
+  background-color: var(--violet, #3b82f6);
   border-radius: 10px;
   padding: 0.5rem 3rem 0.5rem 0.5rem;
   margin-left: 3rem;
 }
 
 #active > a:hover {
-  color: var(--zinc-300);
+  color: var(--zinc-300, #52525b);
 }
 
 #sb-footer {
@@ -88,7 +90,7 @@ body {
   font-size: 1rem;
   font-family: 'Roboto';
   font-weight: 600;
-  color: var(--zinc-100);
+  color: var(--zinc-100, #18181B);
   margin: 0;
 }
 
@@ -96,18 +98,18 @@ body {
   font-size: 1rem;
   font-family: 'Roboto';
   font-weight: 400;
-  color: var(--zinc-300);
+  color: var(--zinc-300, #3F3F46);
   margin: 0;
 }
 
 .ph-sign-out {
   font-size: 1.5rem;
-  color: var(--zinc-300);
+  color: var(--zinc-300, #3F3F46);
   cursor: pointer;
 }
 
 .ph-sign-out:hover {
-  color: var(--zinc-500);
+  color: var(--zinc-500, #a1a1aa);
 }
 
 #logout {
@@ -119,7 +121,7 @@ body {
 }
 
 #welcome {
-  color: var(--zinc-400);
+  color: var(--zinc-400, #52525B);
   font-size: 1.5rem;
   font-weight: 700;
   font-family: 'Roboto';
@@ -131,7 +133,7 @@ body {
 
 .theme-control > i, p {
   font-size: 1rem;
-  color: var(--zinc-100);
+  color: var(--zinc-100, #18181B);
   font-weight: 700;
   font-family: 'Poppins';
 }
@@ -140,12 +142,12 @@ body {
   font-size: 16;
   font-family: 'Poppins';
   font-weight: 500;
-  color: var(--violet);
+  color: var(--violet, #3B82F6);
 }
 
 #content {
   height: 93svh;
-  background-color: var(--zinc-950);
+  background-color: var(--zinc-950, #FAFAFA);
 }
 
 #table-header {
@@ -153,32 +155,32 @@ body {
 }
 
 #clients-count > i {
-  color: var(--zinc-700);
+  color: var(--zinc-700, #27272A);
   font-size: 40px;
-  background-color: var(--zinc-300);
+  background-color: var(--zinc-300, #E4E4E7);
 }
 
 #clients-count-text > p {
-  color: var(--zinc-500);
+  color: var(--zinc-500, #71717A);
   font-family: 'Roboto';
   font-size: 1rem;
   font-weight: 400;
 }
 
 #clients-count-text > span {
-  color: var(--zinc-200);
+  color: var(--zinc-200, #27272A);
   font-size: 1.5rem;
   font-family: 'Roboto';
   font-weight: 600;
 }
 
 #add-client > button, i {
-  color: var(--zinc-700);
+  color: var(--zinc-700, #27272A);
   font-size: 24px;
 }
 
 #add-client > button {
-  background-color: var(--zinc-300);
+  background-color: var(--zinc-300, #E4E4E7);
   font-size: 1rem;
   font-family: 'Roboto';
   font-weight: 400;
@@ -186,14 +188,14 @@ body {
 }
 
 #add-client > button:hover {
-  background-color: var(--zinc-400);
+  background-color: var(--zinc-400, #d4d4d8);
 }
 
 .table {
-  --bs-table-bg: #09090b;
-  --bs-table-color: #FAFAFA;
-  --bs-table-hover-bg: #27272a;
-  --bs-table-hover-color: #FAFAFA;
+  --bs-table-bg: var(--zinc-950, #FAFAFA);
+  --bs-table-color: var(--zinc-50, #09090b);
+  --bs-table-hover-bg: var(--zinc-800, #e4e4e7);
+  --bs-table-hover-color: var(--zinc-50, #09090b);
 }
 
 th, td {
@@ -203,39 +205,39 @@ th, td {
 }
 
 td > button > i {
-  color: #a78bfa;
+  color: var(--violet-400, #60a5fa);
   cursor: pointer;
 }
 
 td > button > i:hover {
-  color: #ddd6fe;
+  color: var(--violet-200, #bfdbfe);
 }
 
 .modal-content {
-  background-color: var(--zinc-800);
-  color: var(--zinc-100);
+  background-color: var(--zinc-800, #fafafa);
+  color: var(--zinc-100, #18181b);
   font-family: 'Poppins';
   font-weight: 500;
 }
 
 .form-control {
-  background-color: var(--zinc-200);
+  background-color: var(--zinc-200, #f4f4f5);
   border: none;
-  color: var(--zinc-900);
+  color: var(--zinc-900, #09090b);
 }
 
 .form-control:focus-within {
-  background-color: var(--zinc-50);
+  background-color: var(--zinc-50, #e4e4e7);
   box-shadow: none;
 }
 
 .modal-footer > button:first-child {
   border: 1px solid #db2777;
-  color: var(--zinc-100);
+  color: var(--zinc-100, #18181b);
 }
 
 .modal-footer > button:first-child:hover {
-  color: var(--zinc-100);
+  color: var(--zinc-100, #18181b);
   background-color: #f472b6;
 }
 
@@ -246,7 +248,7 @@ td > button > i:hover {
 }
 
 .modal-footer > button:last-child:hover {
-  background-color: var(--violet);
+  background-color: var(--violet, #8b5cf6);
   border: none;
 }
 

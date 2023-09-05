@@ -19,7 +19,7 @@
   <link rel="icon" type="image/png" sizes="16x16" href="/assets//favicon-16x16.png">
 </head>
 
-<body class="d-flex overflow-hidden">
+<body class="d-flex overflow-hidden dark">
   <nav id="side-bar" class="d-flex flex-column flex-shrink-0">
 
     <div id="sb-header" 
@@ -72,12 +72,12 @@
       <div 
         class="app-header d-flex flex-row align-items-center justify-content-between mx-5 my-4"
       >
-        <p id="welcome">`Olá usuário, 👋🏼`</p>
+        <p id="welcome">Olá usuário, 👋🏼</p>
 
-        <div class="theme-control d-flex flex-row gap-1">
+        <div id="toggle-theme" class="theme-control d-flex flex-row gap-1">
           <i class="ph ph-moon mt-1"></i>
           <p>Dark:</p>
-          <span>on</span>
+          <span id="theme-status">on</span>
         </div>
 
       </div>
@@ -211,6 +211,6 @@
 
   <script src="/js/base.js"></script>
   <script src="/js/model/Client.js"></script>
-  <script src="/js/script.js"></script>
+  <script src="/js/main.js"></script>
 </body>
 </html>
